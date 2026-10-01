@@ -1,10 +1,7 @@
 package main;
 // #5 11:22
 /* TODO:
-  - implement collision on all 4 faces - mostly done
-  - make level triggers - mostly done
-  - add some kind of object/entity
-  - redo the map/tile system
+  - make it not bad
  */
 import javax.swing.JFrame;
 

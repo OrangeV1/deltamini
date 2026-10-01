@@ -1,6 +1,6 @@
 package main;
 import entity.Player;
-import tiles.TileManager;
+import map.LevelManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,20 +8,20 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
   // Initialize window properties
   final int originalTileSize = 16;
-  public int scale = 6;
-  public final int tileSize = originalTileSize * scale;
+  public double scale = 5.5;
+  public final int tileSize = (int) (originalTileSize * scale);
   public final int maxScreenColumns = 12;
   public final int maxScreenRows = 8;
-  public final int screenWidth = maxScreenColumns * tileSize;
-  public final int screenHeight = maxScreenRows * tileSize;
+  public final int screenWidth = maxScreenColumns * tileSize; // 1152
+  public final int screenHeight = maxScreenRows * tileSize; // 768
 
   int FPS = 30;
 
   // Create objects
-  public TileManager tileM = new TileManager(this);
+  public LevelManager levelM = new LevelManager(this);
   KeyHandler keyH = new KeyHandler();
   Thread gameThread;
-  public CollisionHandler collisionH = new CollisionHandler(this);
+  //public CollisionHandler collisionH = new CollisionHandler(this);
   public Player player1 = new Player(this, keyH);
 
   public GamePanel() {
@@ -47,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
     long currentTime;
     long timer = 0;
     long drawCount = 0;
+    levelM.loadLevel("empty", 12, 8);
 
     while (gameThread != null) {
 
@@ -62,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable{
         drawCount++;
       }
       if (timer >= 1000000000) {
-        System.out.println("FPS: " + drawCount);
+        //System.out.println("FPS: " + drawCount);
         //System.out.println(getWidth());
         drawCount = 0;
         timer = 0;
@@ -78,9 +79,12 @@ public class GamePanel extends JPanel implements Runnable{
   // Draws objects to the screen
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    Graphics2D g2 = (Graphics2D)g;
-    tileM.draw(g2);
-    player1.draw(g2);
-    g2.dispose();
+    Graphics2D g2d = (Graphics2D) g;
+    try {
+      levelM.draw(g2d);
+      player1.draw(g2d);
+    }
+    catch (Exception e) {}
+    g2d.dispose();
   }
 }
