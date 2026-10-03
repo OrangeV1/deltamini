@@ -20,7 +20,7 @@ public class LevelManager {
     }
 
     public void loadLevel(String name, int width, int height) {
-        this.curLevel = new Level(name, width, height, panel.tileSize);
+        this.curLevel = new Level(this.panel, name, width, height, panel.tileSize);
     }
 
     public void loadLevel(Level level) {

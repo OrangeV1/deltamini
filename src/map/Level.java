@@ -7,8 +7,10 @@ import java.io.InputStreamReader;
 
 import entity.Entity;
 import entity.Sprite2D;
+import main.GamePanel;
 
 public class Level {
+    private final GamePanel panel;
     public Entity[] entities;
     public String name;
     public Sprite2D[][] tiles;
@@ -19,7 +21,8 @@ public class Level {
         new Sprite2D("tiles/32xtileset.png", new int[] {16, 0, 16, 16})
     };
 
-    public Level(String name, int width, int height, int tileSize) {
+    public Level(GamePanel panel, String name, int width, int height, int tileSize) {
+        this.panel = panel;
         this.name = name;
         this.width = width;
         this.height = height;
@@ -36,7 +39,7 @@ public class Level {
 
             for (int i = 0;i < height;i++) {
                 String line = br.readLine();
-                String lineTiles[] = line.split(";");
+                String[] lineTiles = line.split(";");
 
                 for (int j = 0; j < width;j++) {
                     int tile = Integer.parseInt(lineTiles[j]);
@@ -55,8 +58,8 @@ public class Level {
                 try {
                     g2d.drawImage(
                         tiles[i][j].getSprites()[0], 
-                        j * this.tileSize, 
-                        i * this.tileSize, 
+                        j * this.tileSize + (this.panel.maxScreenWidth / 2) - ((this.panel.maxScreenColumns * this.tileSize) / 2),
+                        i * this.tileSize + (this.panel.maxScreenHeight / 2) - ((this.panel.maxScreenRows * this.tileSize) / 2),
                         this.tileSize, 
                         this.tileSize, 
                         null

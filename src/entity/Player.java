@@ -26,9 +26,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        this.x = this.panel.screenWidth / 2;
-        this.y = this.panel.screenHeight / 2;
-        this.speed = 10;
+        this.x = this.panel.maxScreenWidth / 2;
+        this.y = this.panel.maxScreenHeight / 2;
+        this.speed = 2 * this.panel.scale; // 2 pixels per tick
         this.velocity = new Vector2(0, 0);
         this.direction = "down";
     }
@@ -71,8 +71,8 @@ public class Player extends Entity {
         //this.collided = false;
         //this.panel.collisionH.checkTile(this);
         //if (this.CheckCollision(Rectangle())) {
-        this.y += velocity.y * this.speed;
-        this.x += velocity.x * this.speed;
+        this.y += (int) (velocity.y * this.speed);
+        this.x += (int) (velocity.x * this.speed);
         this.velocity.x = 0;
         this.velocity.y = 0;
         //}
@@ -89,20 +89,13 @@ public class Player extends Entity {
 
     // Draw player based on spriteNum
     public void draw(Graphics2D g2) {
-        BufferedImage image = null;
-        switch (this.direction) {
-            case "up":
-                image = this.upSprites.getSprite();
-                break;
-            case "left":
-                image = this.leftSprites.getSprite();
-                break;
-            case "down":
-                image = this.downSprites.getSprite();
-                break;
-            case "right":
-                image = this.rightSprites.getSprite();
-        }
+        BufferedImage image = switch (this.direction) {
+            case "up" -> this.upSprites.getSprite();
+            case "left" -> this.leftSprites.getSprite();
+            case "down" -> this.downSprites.getSprite();
+            case "right" -> this.rightSprites.getSprite();
+            default -> null;
+        };
         g2.drawImage(image, this.x, this.y, this.panel.tileSize, this.panel.tileSize, (ImageObserver)null);
     }
 }

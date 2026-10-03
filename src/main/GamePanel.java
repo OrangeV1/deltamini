@@ -5,15 +5,16 @@ import map.LevelManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
-  // Initialize window properties
-  final int originalTileSize = 16;
-  public double scale = 5.5;
-  public final int tileSize = (int) (originalTileSize * scale);
+public class GamePanel extends JPanel implements Runnable {
+  // 720p = 80x, 1080p = 120x, 1440p = 160x, 2160p = 240x
+  public final int maxScreenWidth = 16 * 80;
+  public final int maxScreenHeight = 9 * 80;
   public final int maxScreenColumns = 12;
   public final int maxScreenRows = 8;
-  public final int screenWidth = maxScreenColumns * tileSize; // 1152
-  public final int screenHeight = maxScreenRows * tileSize; // 768
+
+  final int originalTileSize = 16;
+  public final int scale = maxScreenHeight / (originalTileSize * maxScreenRows);
+  public final int tileSize = (originalTileSize * scale);
 
   int FPS = 30;
 
@@ -21,11 +22,10 @@ public class GamePanel extends JPanel implements Runnable{
   public LevelManager levelM = new LevelManager(this);
   KeyHandler keyH = new KeyHandler();
   Thread gameThread;
-  //public CollisionHandler collisionH = new CollisionHandler(this);
   public Player player1 = new Player(this, keyH);
 
   public GamePanel() {
-    this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+    this.setPreferredSize(new Dimension(maxScreenWidth, maxScreenHeight));
     this.setDoubleBuffered(true);
     this.addKeyListener(keyH);
     this.setFocusable(true);
@@ -41,13 +41,12 @@ public class GamePanel extends JPanel implements Runnable{
   @Override
   public void run() {
 
-    double drawInterval = 1000000000/FPS;
+    double drawInterval = 1000000000.0/FPS;
     double delta = 0;
     long lastTime = System.nanoTime();
     long currentTime;
     long timer = 0;
-    long drawCount = 0;
-    levelM.loadLevel("empty", 12, 8);
+    this.levelM.loadLevel("empty", 12, 8);
 
     while (gameThread != null) {
 
@@ -60,12 +59,8 @@ public class GamePanel extends JPanel implements Runnable{
         update();
         repaint();
         delta--;
-        drawCount++;
       }
       if (timer >= 1000000000) {
-        //System.out.println("FPS: " + drawCount);
-        //System.out.println(getWidth());
-        drawCount = 0;
         timer = 0;
       }
     }

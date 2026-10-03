@@ -28,6 +28,9 @@ public class Sprite2D {
     public Sprite2D(Sprite2D sprite2D) {
         this.spritesheet = sprite2D.spritesheet;
         this.sprites = sprite2D.sprites;
+        this.curSprite = sprite2D.curSprite;
+        this.animDelay = sprite2D.animDelay;
+        this.spriteTime = sprite2D.spriteTime;
     }
 
     public void startAnim(int animDelay) {

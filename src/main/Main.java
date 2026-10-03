@@ -4,6 +4,7 @@ package main;
   - make it not bad
  */
 import javax.swing.JFrame;
+import java.awt.*;
 
 public class Main {
   public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class Main {
     window.setLocation(0, 0);
     window.setResizable(false);
     window.add(panel);
+    panel.setBackground(Color.BLACK);
 
     window.pack();
 
