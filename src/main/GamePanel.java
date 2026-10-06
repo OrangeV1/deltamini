@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     long lastTime = System.nanoTime();
     long currentTime;
     long timer = 0;
-    this.levelM.loadLevel("empty", 12, 8);
+    this.levelM.loadLevel("demo1", 12, 8);
 
     while (gameThread != null) {
 
