@@ -16,9 +16,9 @@ public class Sprite2D {
         this.spritesheet = sheet;
         this.sprites = new BufferedImage[sprites.length];
         try {
-            BufferedImage spsheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream(spritesheet));
+            BufferedImage spSheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream(spritesheet));
             for (int i = 0;i < sprites.length;i++) {
-                this.sprites[i] = spsheet.getSubimage(sprites[i][0], sprites[i][1], sprites[i][2], sprites[i][3]);
+                this.sprites[i] = spSheet.getSubimage(sprites[i][0], sprites[i][1], sprites[i][2], sprites[i][3]);
             }
         } catch (IOException e) {
             e.printStackTrace();

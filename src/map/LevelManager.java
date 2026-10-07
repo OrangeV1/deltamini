@@ -28,7 +28,7 @@ public class LevelManager {
     }
 
     public void update() {
-
+        curLevel.update();
     }
 
     public void draw(Graphics2D g2d) {

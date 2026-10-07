@@ -84,7 +84,6 @@ public class Player extends Entity {
             this.leftSprites.update();
             this.rightSprites.update();
         }
-
     }
 
     // Draw player based on spriteNum

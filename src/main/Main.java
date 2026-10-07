@@ -7,19 +7,19 @@ import javax.swing.JFrame;
 import java.awt.*;
 
 public class Main {
-  public static void main(String[] args) {
-    //Initialize everything
-    JFrame window = new JFrame("Game");
-    GamePanel panel = new GamePanel();
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setVisible(true);
-    window.setLocation(0, 0);
-    window.setResizable(false);
-    window.add(panel);
-    panel.setBackground(Color.BLACK);
+    public static void main(String[] args) {
+        //Initialize everything
+        JFrame window = new JFrame("Game");
+        GamePanel panel = new GamePanel();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setVisible(true);
+        window.setLocation(0, 0);
+        window.setResizable(false);
+        window.add(panel);
+        panel.setBackground(Color.BLACK);
 
-    window.pack();
+        window.pack();
 
-    panel.startGameThread();
-  }
+        panel.startGameThread();
+    }
 }

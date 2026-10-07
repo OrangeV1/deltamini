@@ -33,8 +33,10 @@ public class Level {
         tileKeys.put(3, new Sprite2D("tiles/32xtileset.png", new int[] {256, 64, 16, 16}));
         tileKeys.put(4, new Sprite2D("tiles/32xtileset.png", new int[] {272, 64, 16, 16}));
         tileKeys.put(5, new Sprite2D("tiles/32xtileset.png", new int[] {288, 64, 16, 16}));
-        tileKeys.put(9, new Sprite2D("tiles/32xtileset.png", new int[] {80, 128, 16, 16}, new int[] {96, 128, 16, 16}, new int[] {112, 128, 16, 16}, new int[] {128, 128, 16, 16}));
-        tileKeys.put(10, new Sprite2D("tiles/32xtileset.png", new int[] {80, 192, 16, 16}));
+        tileKeys.put(9, new Sprite2D("tiles/32xtileset.png", new int[] {64, 128, 16, 16}, new int[] {80, 128, 16, 16}, new int[] {96, 128, 16, 16}, new int[] {112, 128, 16, 16}));
+        tileKeys.get(9).startAnim(7);
+        tileKeys.put(10, new Sprite2D("tiles/32xtileset.png", new int[] {80, 192, 16, 16}, new int[] {96, 192, 16, 16}, new int[] {112, 192, 16, 16}, new int[] {128, 192, 16, 16}));
+        tileKeys.get(10).startAnim(7);
         tileKeys.put(11, new Sprite2D("tiles/32xtileset.png", new int[] {16, 0, 16, 16}));
 
         readLevel();
@@ -52,12 +54,18 @@ public class Level {
                 for (int j = 0; j < width;j++) {
                     int tile = Integer.parseInt(lineTiles[j]);
 
-                    tiles[i][j] = (this.tileKeys.get(tile) != null) ? new Sprite2D(this.tileKeys.get(tile)) : null;
+                    tiles[i][j] = (this.tileKeys.get(tile) != null) ? this.tileKeys.get(tile) : null;
                 }
             }
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void update() {
+        for (Sprite2D tile : tileKeys.values()) {
+            if (tile != null && tile.getSprites().length > 1) {tile.update();}
         }
     }
 
@@ -67,7 +75,7 @@ public class Level {
                 if (tiles[i][j] != null) {
                     try {
                         g2d.drawImage(
-                            tiles[i][j].getSprites()[0], 
+                            tiles[i][j].getSprite(),
                             j * this.tileSize + (this.panel.maxScreenWidth / 2) - ((this.panel.maxScreenColumns * this.tileSize) / 2),
                             i * this.tileSize + (this.panel.maxScreenHeight / 2) - ((this.panel.maxScreenRows * this.tileSize) / 2),
                             this.tileSize, 
@@ -88,9 +96,9 @@ public class Level {
                 if (tiles[i][j] != null) {
                     try {
                         g2d.drawImage(
-                            tiles[i][j].getSprites()[0], 
-                            j * this.tileSize, 
-                            i * this.tileSize, 
+                            tiles[i][j].getSprite(),
+                            j * this.tileSize + (this.panel.maxScreenWidth / 2) - ((this.panel.maxScreenColumns * this.tileSize) / 2),
+                            i * this.tileSize + (this.panel.maxScreenHeight / 2) - ((this.panel.maxScreenRows * this.tileSize) / 2),
                             this.tileSize, 
                             this.tileSize, 
                             null
