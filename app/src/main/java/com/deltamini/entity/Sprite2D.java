@@ -1,4 +1,4 @@
-package entity;
+package com.deltamini.entity;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

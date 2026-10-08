@@ -1,11 +1,11 @@
-package entity;
+package com.deltamini.entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import main.GamePanel;
-import main.KeyHandler;
+import com.deltamini.main.GamePanel;
+import com.deltamini.main.KeyHandler;
 
 public class Player extends Entity {
     private GamePanel panel;
@@ -20,7 +20,7 @@ public class Player extends Entity {
         // Declare default values and initialize player
         this.panel = panel;
         this.keyH = keyH;
-        this.hitbox = new Rectangle(this.x + panel.tileSize, this.y + 8 * panel.tileSize, 14 * panel.tileSize, 8 * panel.tileSize);
+        this.hitbox = new Rectangle(this.x + panel.tileSize, this.y + 8 * panel.tileSize, 16 * panel.tileSize, 8 * panel.tileSize);
         this.setDefaultValues();
         this.getPlayerImage();
     }
@@ -35,13 +35,13 @@ public class Player extends Entity {
 
     // Load player sprites
     public void getPlayerImage() {
-        this.upSprites = new Sprite2D("player/spritesheet.png", new int[] {102, 16, 16, 16}, new int[] {119, 16, 16, 16});
+        this.upSprites = new Sprite2D("assets/player/spritesheet.png", new int[] {102, 16, 16, 16}, new int[] {119, 16, 16, 16});
         this.upSprites.startAnim(7);
-        this.downSprites = new Sprite2D("player/spritesheet.png", new int[] {0, 16, 16, 16}, new int[] {17, 16, 16, 16});
+        this.downSprites = new Sprite2D("assets/player/spritesheet.png", new int[] {0, 16, 16, 16}, new int[] {17, 16, 16, 16});
         this.downSprites.startAnim(7);
-        this.leftSprites = new Sprite2D("player/spritesheet.png", new int[] {34, 16, 16, 16}, new int[] {51, 16, 16, 16});
+        this.leftSprites = new Sprite2D("assets/player/spritesheet.png", new int[] {34, 16, 16, 16}, new int[] {51, 16, 16, 16});
         this.leftSprites.startAnim(7);
-        this.rightSprites = new Sprite2D("player/spritesheet.png", new int[] {68, 16, 16, 16}, new int[] {85, 16, 16, 16});
+        this.rightSprites = new Sprite2D("assets/player/spritesheet.png", new int[] {68, 16, 16, 16}, new int[] {85, 16, 16, 16});
         this.rightSprites.startAnim(7);
     }
 

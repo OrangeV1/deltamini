@@ -1,4 +1,4 @@
-package main;
+package com.deltamini.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -1,6 +1,6 @@
-package main;
-import entity.Player;
-import map.LevelManager;
+package com.deltamini.main;
+import com.deltamini.entity.Player;
+import com.deltamini.map.LevelManager;
 
 import javax.swing.*;
 import java.awt.*;

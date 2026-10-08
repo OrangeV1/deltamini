@@ -1,6 +1,6 @@
 {
   "collider1": {
-    "class": "",
+    "class": "Collider",
     "x": 0,
     "y": 0,
     "width": 16,

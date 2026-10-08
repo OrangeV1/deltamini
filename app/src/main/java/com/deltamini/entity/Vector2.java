@@ -1,4 +1,4 @@
-package entity;
+package com.deltamini.entity;
 
 public class Vector2 {
     public float x;

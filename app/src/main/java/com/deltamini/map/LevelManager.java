@@ -1,8 +1,9 @@
-package map;
+package com.deltamini.map;
 
 import java.awt.Graphics2D;
 
-import main.GamePanel;
+import com.deltamini.entity.Entity;
+import com.deltamini.main.GamePanel;
 
 /*
 - loading maps
@@ -14,6 +15,7 @@ import main.GamePanel;
 public class LevelManager {
     private GamePanel panel;
     public Level curLevel;
+    public Entity[] entities;
 
     public LevelManager(GamePanel panel) {
         this.panel = panel;

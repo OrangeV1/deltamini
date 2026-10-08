@@ -1,9 +1,12 @@
-package main;
+package com.deltamini;
 // #5 11:22
 /* TODO:
   - make it not bad
  */
 import javax.swing.JFrame;
+
+import com.deltamini.main.GamePanel;
+
 import java.awt.*;
 
 public class Main {

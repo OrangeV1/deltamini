@@ -1,4 +1,4 @@
-package map;
+package com.deltamini.map;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -7,13 +7,11 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import entity.Entity;
-import entity.Sprite2D;
-import main.GamePanel;
+import com.deltamini.entity.Sprite2D;
+import com.deltamini.main.GamePanel;
 
 public class Level {
     private final GamePanel panel;
-    public Entity[] entities;
     public String name;
     public Sprite2D[][] tiles;
     public int width;
@@ -30,21 +28,21 @@ public class Level {
         this.tileSize = tileSize;
 
         tileKeys.put(0, null);
-        tileKeys.put(3, new Sprite2D("tiles/32xtileset.png", new int[] {256, 64, 16, 16}));
-        tileKeys.put(4, new Sprite2D("tiles/32xtileset.png", new int[] {272, 64, 16, 16}));
-        tileKeys.put(5, new Sprite2D("tiles/32xtileset.png", new int[] {288, 64, 16, 16}));
-        tileKeys.put(9, new Sprite2D("tiles/32xtileset.png", new int[] {64, 128, 16, 16}, new int[] {80, 128, 16, 16}, new int[] {96, 128, 16, 16}, new int[] {112, 128, 16, 16}));
+        tileKeys.put(3, new Sprite2D("assets/tiles/32xtileset.png", new int[] {256, 64, 16, 16}));
+        tileKeys.put(4, new Sprite2D("assets/tiles/32xtileset.png", new int[] {272, 64, 16, 16}));
+        tileKeys.put(5, new Sprite2D("assets/tiles/32xtileset.png", new int[] {288, 64, 16, 16}));
+        tileKeys.put(9, new Sprite2D("assets/tiles/32xtileset.png", new int[] {64, 128, 16, 16}, new int[] {80, 128, 16, 16}, new int[] {96, 128, 16, 16}, new int[] {112, 128, 16, 16}));
         tileKeys.get(9).startAnim(7);
-        tileKeys.put(10, new Sprite2D("tiles/32xtileset.png", new int[] {80, 192, 16, 16}, new int[] {96, 192, 16, 16}, new int[] {112, 192, 16, 16}, new int[] {128, 192, 16, 16}));
+        tileKeys.put(10, new Sprite2D("assets/tiles/32xtileset.png", new int[] {80, 192, 16, 16}, new int[] {96, 192, 16, 16}, new int[] {112, 192, 16, 16}, new int[] {128, 192, 16, 16}));
         tileKeys.get(10).startAnim(7);
-        tileKeys.put(11, new Sprite2D("tiles/32xtileset.png", new int[] {16, 0, 16, 16}));
+        tileKeys.put(11, new Sprite2D("assets/tiles/32xtileset.png", new int[] {16, 0, 16, 16}));
 
         readLevel();
     }
 
     public void readLevel() {
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream("maps/" + name + "/tiles.csv");
+            InputStream is = getClass().getClassLoader().getResourceAsStream("assets/maps/" + name + "/tiles.csv");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             for (int i = 0;i < height;i++) {
