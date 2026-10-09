@@ -45,6 +45,7 @@ public class Player extends Entity {
         this.rightSprites.startAnim(7);
     }
 
+    @Override 
     public void update() {
         // Check for key inputs and set direction if true
         if (this.keyH.upPressed) {
@@ -87,7 +88,8 @@ public class Player extends Entity {
     }
 
     // Draw player based on spriteNum
-    public void draw(Graphics2D g2) {
+    @Override
+    public void draw(Graphics2D g2d) {
         BufferedImage image = switch (this.direction) {
             case "up" -> this.upSprites.getSprite();
             case "left" -> this.leftSprites.getSprite();
@@ -95,6 +97,6 @@ public class Player extends Entity {
             case "right" -> this.rightSprites.getSprite();
             default -> null;
         };
-        g2.drawImage(image, this.x, this.y, this.panel.tileSize, this.panel.tileSize, (ImageObserver)null);
+        g2d.drawImage(image, this.x, this.y, this.panel.tileSize, this.panel.tileSize, (ImageObserver)null);
     }
 }

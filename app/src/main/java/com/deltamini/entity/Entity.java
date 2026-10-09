@@ -1,5 +1,6 @@
 package com.deltamini.entity;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Entity {
@@ -12,11 +13,15 @@ public class Entity {
     public String direction;
     public Rectangle hitbox;
 
-    public boolean CheckCollision(Rectangle rect1, Rectangle rect2) {
+    public boolean checkCollision(Rectangle rect1, Rectangle rect2) {
         return rect1.intersects(rect2);
     }
 
-    public void update() {}
+    public void update() {
+        // @Override in child classes
+    }
 
-    public void draw() {}
+    public void draw(Graphics2D g2d) {
+        // @Override in child classes
+    }
 }
