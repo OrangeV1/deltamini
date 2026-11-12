@@ -10,9 +10,9 @@ import com.deltamini.main.GamePanel;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main() {
         //Initialize everything
-        JFrame window = new JFrame("Game");
+        JFrame window = new JFrame("MANTLE");
         GamePanel panel = new GamePanel();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);

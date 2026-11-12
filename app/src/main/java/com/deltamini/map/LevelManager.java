@@ -7,8 +7,10 @@ import java.awt.Graphics2D;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -23,9 +25,9 @@ import com.deltamini.main.GamePanel;
 */
 
 public class LevelManager {
-    private GamePanel panel;
-    public Level curLevel;
-    public Entity[] entities; // map or array???
+    private final GamePanel panel;
+    private Level curLevel;
+    private final ArrayList<Entity> entities = new ArrayList<Entity>();
 
     public LevelManager(GamePanel panel) {
         this.panel = panel;
@@ -43,6 +45,7 @@ public class LevelManager {
 
     public void loadEntities(String name) {
         Gson gson = new Gson();
+        this.entities.clear();
 
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("assets/maps/" + name + "/entities.json")) {
             
@@ -61,7 +64,8 @@ public class LevelManager {
                 for (Entry<String, Object> entity : map.entrySet()) {
                     entityMap = (LinkedTreeMap<?, ?>) entity.getValue();
                     entityClass = Class.forName("com.deltamini.entity." + entityMap.get("class").toString());
-                    System.out.println(entityClass);
+                    Constructor<?> entityConstructor = entityClass.getDeclaredConstructor(LinkedTreeMap.class, GamePanel.class);
+                    this.entities.add((Entity) entityConstructor.newInstance(entityMap, this.panel));
                 }
             }
 
@@ -72,9 +76,15 @@ public class LevelManager {
 
     public void update() {
         curLevel.update();
+        for (Entity entity : this.entities) {
+            entity.update();
+        }
     }
 
     public void draw(Graphics2D g2d) {
         this.curLevel.draw(g2d);
+        for (Entity entity : this.entities) {
+            entity.draw(g2d);
+        }
     }
 }

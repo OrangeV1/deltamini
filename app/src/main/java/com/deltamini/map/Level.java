@@ -17,7 +17,7 @@ public class Level {
     public int width;
     public int height;
     public int tileSize;
-    private Map<Integer, Sprite2D> tileKeys = new HashMap<>();
+    private final Map<Integer, Sprite2D> tileKeys = new HashMap<>();
 
     public Level(GamePanel panel, String name, int width, int height, int tileSize) {
         this.panel = panel;

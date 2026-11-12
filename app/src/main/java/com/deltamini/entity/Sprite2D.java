@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Sprite2D {
-    private BufferedImage[] sprites;
-    private String spritesheet;
+    private final BufferedImage[] sprites;
+    private final String spritesheet;
     private int curSprite = 0;
     private int animDelay;
     private int spriteTime = 0;

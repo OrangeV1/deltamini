@@ -8,8 +8,7 @@ import com.deltamini.main.GamePanel;
 import com.deltamini.main.KeyHandler;
 
 public class Player extends Entity {
-    private GamePanel panel;
-    private KeyHandler keyH;
+    private final KeyHandler keyH;
 
     private Sprite2D upSprites;
     private Sprite2D downSprites;
@@ -18,6 +17,7 @@ public class Player extends Entity {
 
     public Player(GamePanel panel, KeyHandler keyH) {
         // Declare default values and initialize player
+        super(panel);
         this.panel = panel;
         this.keyH = keyH;
         this.hitbox = new Rectangle(this.x + panel.tileSize, this.y + 8 * panel.tileSize, 16 * panel.tileSize, 8 * panel.tileSize);
